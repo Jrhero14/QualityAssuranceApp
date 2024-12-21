@@ -27,10 +27,7 @@
 
     @if(session()->has('errorLogin'))
         <script>
-            Toast.fire({
-                title: 'Email atau Password salah',
-                icon: 'error'
-            });
+            errorToast('Email atau Password salah');
         </script>
     @endif
 </div>

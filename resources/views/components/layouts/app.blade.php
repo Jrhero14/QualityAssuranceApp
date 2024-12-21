@@ -25,7 +25,22 @@
                     toast.onmouseleave = Swal.resumeTimer;
                 }
             });
+
+            function successToast(msg){
+                Toast.fire({
+                    title: msg,
+                    icon: 'success'
+                });
+            }
+
+            function errorToast(msg){
+                Toast.fire({
+                    title: msg,
+                    icon: 'error'
+                });
+            }
         </script>
+
     </head>
     <body class="bg-gray-200 dark:bg-gray-900">
         {{ $slot }}

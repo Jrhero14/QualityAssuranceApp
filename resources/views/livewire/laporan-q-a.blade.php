@@ -1,7 +1,7 @@
 <div>
     <x-partials.navbar currentUrl="{{ $currentUrl }}"></x-partials.navbar>
 
-    <div class="max-w-screen-2xl mx-auto pt-28">
+    <div class="max-w-screen-xl mx-auto pt-28">
         <nav class="flex mb-5" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
@@ -46,149 +46,104 @@
             <table class="w-full text-sm text-left rtl:text-right text-black ">
                 <thead class="text-xs text-black uppercase bg-slate-300 border-b border-slate-400 dark:text-white">
                 <tr>
-                    <th scope="col"  colspan=2 class="px-6 py-3 bg-slate-300"></th>
-                    <th scope="col"  colspan=4 class="px-6 py-3 bg-slate-200 text-center">
+                    <th scope="col"  colspan=2 class="px-3 py-3 bg-slate-300"></th>
+                    <th scope="col"  colspan=4 class="px-3 py-3 bg-slate-200 text-center">
                         QUALITY
                     </th>
-                    <th scope="col"  colspan=8 class="px-6 py-3 bg-slate-300 text-center">
+                    <th scope="col"  colspan=8 class="px-3 py-3 bg-slate-300 text-center">
                         REMARK NG
                     </th>
                 </tr>
                 <tr>
-                    <th scope="col" class="px-6 py-3 bg-slate-300">
+                    <th scope="col" class="px-3 py-3 bg-slate-300">
                         Part No
                     </th>
-                    <th scope="col" class="px-6 py-3 bg-slate-300">
+                    <th scope="col" class="px-3 py-3 bg-slate-300">
                         Part Name
                     </th>
 
-                    <th scope="col" class="px-6 py-3 bg-slate-200">
+                    <th scope="col" class="px-3 py-3 bg-slate-200">
                         TOTAL
                     </th>
-                    <th scope="col" class="px-6 py-3 bg-slate-200">
+                    <th scope="col" class="px-3 py-3 bg-slate-200">
                         OK
                     </th>
-                    <th scope="col" class="px-6 py-3 bg-slate-200">
+                    <th scope="col" class="px-3 py-3 bg-slate-200">
                         NG
                     </th>
-                    <th scope="col" class="px-6 py-3 bg-slate-200">
+                    <th scope="col" class="px-3 py-3 bg-slate-200">
                         % NG
                     </th>
 
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         SLVR
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         BRY
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         GLS
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         FWBK
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         BNG RNR
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         SNMRK
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         STRATCH
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         SHOT MOLD
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="bg-slate-300 border-b border-slate-400">
-                    <th scope="row" class="px-6 py-4 font-medium bg-slate-300 text-black whitespace-nowrap ">
+                    <th scope="row" class="px-3 py-2 font-medium bg-slate-300 text-black whitespace-nowrap ">
                         67623-BZ150
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         BOARD, FR DOOR TRIM, UPR RH
                     </td>
-                    <td class="px-6 py-4 bg-slate-200">
+                    <td class="px-3 py-2 bg-slate-200">
                         300
                     </td>
-                    <td class="px-6 py-4 bg-slate-200">
+                    <td class="px-3 py-2 bg-slate-200">
                         295
                     </td>
-                    <td class="px-6 py-4 bg-slate-200">
+                    <td class="px-3 py-2 bg-slate-200">
                         20
                     </td>
-                    <td class="px-6 py-4 bg-slate-200">
+                    <td class="px-3 py-2 bg-slate-200">
                         6,1 %
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         5
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         0
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         3
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         0
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         5
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         0
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         6
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-2">
                         1
-                    </td>
-                </tr>
-
-                <tr class="bg-slate-300 border-b border-slate-400">
-                    <th scope="row" class="px-6 py-4 font-medium bg-slate-300 text-black whitespace-nowrap ">
-                        67623-BZ150
-                    </th>
-                    <td class="px-6 py-4">
-                        BOARD, FR DOOR TRIM, UPR RH
-                    </td>
-                    <td class="px-6 py-4 bg-slate-200">
-
-                    </td>
-                    <td class="px-6 py-4 bg-slate-200">
-
-                    </td>
-                    <td class="px-6 py-4 bg-slate-200">
-
-                    </td>
-                    <td class="px-6 py-4 bg-slate-200">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
-                    </td>
-                    <td class="px-6 py-4">
-
                     </td>
                 </tr>
 
@@ -203,28 +158,28 @@
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             OK
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             NG
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-3 py-2 text-gray-900 whitespace-nowrap dark:text-white">
                             (295/330) x 100%
                         </td>
-                        <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-3 py-2 text-gray-900 whitespace-nowrap dark:text-white">
                             (20/330) x 100%
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th class="text-lg px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th class="text-lg px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             89,4%
                         </th>
-                        <td class="text-lg px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="text-lg px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             6,1%
                         </td>
                     </tr>
@@ -232,6 +187,8 @@
                 </table>
             </div>
         </div>
+
+        <div class="h-[10rem]"></div>
 
     </div>
 </div>

@@ -11,10 +11,32 @@
                     <p>Aplikasi Quality Assurance Product</p>
                 </div>
 
-                <div class="mb-5">
-                    <label for="date" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                    <input type="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
-                </div>
+                <form wire:submit="saveShift" class="flex gap-5 items-end">
+                    <div class="mb-5">
+                        @if(session()->has('belum-pilih-shift'))
+                            <p class="text-sm italic text-red-500 font-semibold">Kamu belum memilih shift</p>
+                        @endif
+                        <label for="shifts" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Shift</label>
+                        <select required id="shifts" wire:model.live="shiftChoice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="null" selected>Pilih Shift</option>
+                        @if(is_null($shiftSelected->shift1_id) or ($shiftSelected->shift1_id == auth()->user()->id))
+                                <option value="shift1">Shift 1</option>
+                            @endif
+                        @if(is_null($shiftSelected->shift2_id) or ($shiftSelected->shift2_id == auth()->user()->id))
+                                <option value="shift2">Shift 2</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="date" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                        <input disabled type="date" value="{{ date('Y-m-d') }}" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Masuk Shift</button>
+                    </div>
+                </form>
             </div>
 
             <div class="px-5 mt-5">
@@ -31,8 +53,18 @@
             @if(is_null($ngChoice))
                 <div class="px-5 mt-10 h-[10rem]">
                     <div class="flex gap-4 h-full">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl w-full">OK</button>
-                        <button wire:click="ngChoiceFun" class="bg-red-500 hover:bg-red-700 text-white font-bold text-4xl w-full">NG</button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl w-full flex justify-center items-center">
+                            <svg class="w-10 h-10 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+                            </svg>
+                            <span>OK</span>
+                        </button>
+                        <button wire:click="ngChoiceFun" class="bg-red-500 hover:bg-red-700 text-white font-bold text-4xl w-full flex justify-center items-center">
+                            <svg class="w-10 h-10 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                            </svg>
+                            <span>NG</span>
+                        </button>
                     </div>
                 </div>
             @elseif($ngChoice)
@@ -50,7 +82,8 @@
                     </div>
                 </div>
             @endif
-
         </div>
     </div>
+
+    <div class="h-[20rem]"></div>
 </div>

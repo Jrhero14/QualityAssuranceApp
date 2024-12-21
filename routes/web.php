@@ -32,5 +32,6 @@ Route::middleware('auth')->group(function () {
     // Supervisor URLS
     Route::get('/laporan-qa', LaporanQA::class)->middleware('isSupervisor')->name('laporan-qa');
     Route::get('/items-database', ItemsView::class)->middleware('isSupervisor')->name('items-database');
+    Route::post('/items-database', [ItemsView::class, 'save'])->middleware('isSupervisor')->name('items-database');
 
 });
