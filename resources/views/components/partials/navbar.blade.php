@@ -1,3 +1,17 @@
+@props([
+    'currentUrl' => ''
+])
+
+@php
+function getActiveNav($currentUrl, $url){
+    if ($currentUrl == $url){
+        return "block py-2 px-3 text-blue-700 bg-blue-700 rounded md:bg-transparent md:p-0";
+    }else{
+        return "block py-2 px-3 hover:text-blue-700 bg-blue-700 rounded md:bg-transparent md:p-0";
+    }
+}
+@endphp
+
 <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
         <a href="https://flowbite.com/" class="flex flex-col">
@@ -17,19 +31,18 @@
             <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 @if(auth()->user()->role == 'operator')
                     <li>
-                        <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+                        <a href="/" wire:navigate class="{{ getActiveNav($currentUrl, '/dashboard') }}" aria-current="page">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Checking</a>
+                        <a href="/checking" wire:navigate class="{{ getActiveNav($currentUrl, '/checking') }}" >Checking</a>
                     </li>
-
                 @else
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Laporan</a>
+                        <a href="/laporan-qa" wire:navigate class="{{ getActiveNav($currentUrl, '/laporan-qa') }}">Laporan</a>
                     </li>
 
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Items Database</a>
+                        <a href="/items-database" wire:navigate class="{{ getActiveNav($currentUrl, '/items-database') }}">Items Database</a>
                     </li>
                 @endif
             </ul>

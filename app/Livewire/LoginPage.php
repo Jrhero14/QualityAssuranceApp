@@ -25,7 +25,10 @@ class LoginPage extends Component
 
         $request->session()->regenerate();
 
-        return redirect()->intended('dashboard');
+        if (\auth()->user()->role == 'operator'){
+            return redirect()->intended('dashboard');
+        }
+        return redirect()->intended('laporan-qa');
     }
 
     public function render()
