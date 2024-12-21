@@ -18,12 +18,18 @@
                         @endif
                         <label for="shifts" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Shift</label>
                         <select required id="shifts" wire:model.live="shiftChoice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="null" selected>Pilih Shift</option>
-                        @if(is_null($shiftSelected->shift1_id) or ($shiftSelected->shift1_id == auth()->user()->id))
+                            @if(is_null($shiftSelected->shift1_id) and is_null($shiftSelected->shift2_id))
+                                <option value="null" selected>Pilih Shift</option>
                                 <option value="shift1">Shift 1</option>
-                            @endif
-                        @if(is_null($shiftSelected->shift2_id) or ($shiftSelected->shift2_id == auth()->user()->id))
                                 <option value="shift2">Shift 2</option>
+                            @endif
+
+                            @if(!is_null($shiftSelected->shift1_id) and (auth()->user()->id == $shiftSelected->shift1_id))
+                                    <option value="shift1" selected>Shift 1</option>
+                            @endif
+
+                            @if(!is_null($shiftSelected->shift2_id) and (auth()->user()->id == $shiftSelected->shift2_id))
+                                    <option value="shift2" selected>Shift 2</option>
                             @endif
                         </select>
                     </div>
@@ -33,16 +39,24 @@
                         <input disabled type="date" value="{{ date('Y-m-d') }}" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                     </div>
 
-                    <div class="mb-3">
-                        <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Masuk Shift</button>
-                    </div>
+
+                    @if(is_null($shiftSelected->shift1_id) and is_null($shiftSelected->shift2_id))
+                        <div class="mb-3">
+                            <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Masuk Shift</button>
+                        </div>
+                    @endif
                 </form>
             </div>
 
             <div class="px-5 mt-5">
                 <div class="mb-5">
-                    <label for="partName" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Part Name</label>
-                    <input type="text" id="partName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                    <label for="items" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Part Name</label>
+                    <select id="items" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Pilih Item</option>
+                        @foreach($items as $item)
+                            <option value="{{ $item->part_name }}">{{ $item->part_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-5 w-full">
                     <label for="partNo" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Part No</label>
@@ -84,6 +98,12 @@
             @endif
         </div>
     </div>
+
+    @if(session()->has('success-masuk-session'))
+        <script>
+            successToast('{{ session()->get('success-masuk-session') }}')
+        </script>
+    @endif
 
     <div class="h-[20rem]"></div>
 </div>

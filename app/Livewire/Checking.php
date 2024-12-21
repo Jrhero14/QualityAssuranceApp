@@ -13,7 +13,7 @@ class Checking extends Component
 
     public $shiftChoice;
 
-    public $shiftSelected;
+    public Schedule $shiftSelected;
 
     public function ngChoiceFun()
     {
@@ -27,13 +27,28 @@ class Checking extends Component
 
     public function saveShift()
     {
+        $userId = auth()->user()->id;
         if (is_null($this->shiftChoice)){
             session()->flash('belum-pilih-shift');
-            $this->redirect('/checking');
+            $this->redirect('/checking', true);
             return;
         }
 
+        if ($this->shiftChoice == 'shift1'){
+            $this->shiftSelected->update([
+                'shift1_id' => $userId
+            ]);
+            session()->flash('success-masuk-session', 'Anda telah masuk shift 1');
+        }
 
+        if ($this->shiftChoice == 'shift2'){
+            $this->shiftSelected->update([
+                'shift2_id' => $userId
+            ]);
+            session()->flash('success-masuk-session', 'Anda telah masuk shift 2');
+        }
+        $this->shiftSelected->save();
+        $this->redirect('/checking', true);
     }
 
     private function checkShift()
