@@ -15,4 +15,10 @@ class Schedule extends Model
         'shift1_id',
         'shift2_id'
     ];
+
+
+    public function checkings()
+    {
+        return $this->hasMany(Checking::class);
+    }
 }

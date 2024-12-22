@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('checkings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('item_id'); // Foreign Key
+            $table->bigInteger('schedule_id'); // Foreign Key
+
+            $table->integer('OK')->default(0);
+            $table->integer('NG')->default(0);
+            $table->integer('total')->default(0);
+            $table->string('part_no');
             $table->timestamps();
+
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('schedule_id')->references('id')->on('schedules');
         });
     }
 

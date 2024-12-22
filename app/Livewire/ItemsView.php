@@ -15,13 +15,19 @@ class ItemsView extends Component
 
     public function save(Request $request)
     {
+        $part_name = $request->get('partName');
         if ($request->method() == 'POST'){
-            Item::query()->create([
-                'part_name' => $request->get('partName')
-            ]);
-            session()->flash('create-item-success');
+            if (!is_null($part_name)){
+                Item::query()->create([
+                    'part_name' => $request->get('partName')
+                ]);
+                session()->flash('create-item-success');
+            }
+            else{
+                session()->flash('partNameInputNull');
+            }
+            return redirect('/items-database');
         }
-        return redirect('/items-database');
     }
 
     public function render()
