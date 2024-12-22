@@ -12,8 +12,17 @@ class Checking extends Component
     public $ngChoice;
 
     public $shiftChoice;
+    public $addPartNoInput;
 
     public Schedule $shiftSelected;
+    public $itemSelected;
+
+    public function checkItemSelected($id)
+    {
+        if (!is_null($id)){
+            $this->itemSelected = Item::query()->find($id);
+        }
+    }
 
     public function ngChoiceFun()
     {
@@ -23,6 +32,11 @@ class Checking extends Component
     public function backButton()
     {
         $this->ngChoice = null;
+    }
+
+    public function addPartNo()
+    {
+
     }
 
     public function saveShift()
