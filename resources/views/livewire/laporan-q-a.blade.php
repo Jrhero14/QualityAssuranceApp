@@ -23,8 +23,8 @@
             <div class="mb-5">
                 <label for="tanggal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hari/tanggal</label>
                 <div class="flex gap-1">
-                    <input type="date" id="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tampilkan</button>
+                    <input type="date" id="tanggal" wire:model.live="dateFilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <button type="button" wire:click="filter" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tampilkan</button>
                 </div>
             </div>
         </form>
@@ -34,11 +34,11 @@
             <div class="mb-5 flex gap-3 w-full">
                 <div class="w-full">
                     <h1 class="font-semibold text-sm">SHIFT 1:</h1>
-                    <input type="text" id="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <input type="text" value="{{ $scheduleData?->shift1?->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
                 </div>
                 <div class="w-full">
                     <h1 class="font-semibold text-sm">SHIFT 2:</h1>
-                    <input type="text" id="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <input type="text" value="{{ $scheduleData?->shift2?->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
                 </div>
             </div>
 
@@ -101,50 +101,68 @@
                     </th>
                 </tr>
                 </thead>
+{{--                <tbody wire:poll.5s="filter">--}}
                 <tbody>
-                <tr class="bg-slate-300 border-b border-slate-400">
-                    <th scope="row" class="px-3 py-2 font-medium bg-slate-300 text-black whitespace-nowrap ">
-                        67623-BZ150
-                    </th>
-                    <td class="px-3 py-2">
-                        BOARD, FR DOOR TRIM, UPR RH
-                    </td>
-                    <td class="px-3 py-2 bg-slate-200">
-                        300
-                    </td>
-                    <td class="px-3 py-2 bg-slate-200">
-                        295
-                    </td>
-                    <td class="px-3 py-2 bg-slate-200">
-                        20
-                    </td>
-                    <td class="px-3 py-2 bg-slate-200">
-                        6,1 %
-                    </td>
-                    <td class="px-3 py-2">
-                        5
-                    </td>
-                    <td class="px-3 py-2">
-                        0
-                    </td>
-                    <td class="px-3 py-2">
-                        3
-                    </td>
-                    <td class="px-3 py-2">
-                        0
-                    </td>
-                    <td class="px-3 py-2">
-                        5
-                    </td>
-                    <td class="px-3 py-2">
-                        0
-                    </td>
-                    <td class="px-3 py-2">
-                        6
-                    </td>
-                    <td class="px-3 py-2">
-                        1
-                    </td>
+                @if(!is_null($checkingsData))
+                    @foreach($checkingsData as $cek)
+                        <tr wire:key="item-{{ $cek->id }}" class="bg-slate-300 border-b border-slate-400">
+                            <th scope="row" class="px-3 py-2 font-medium bg-slate-300 text-black whitespace-nowrap ">
+                                {{ $cek->part_no }}
+                            </th>
+                            <td class="px-3 py-2">
+                                {{ $cek->item->part_name }}
+                            </td>
+                            <td class="px-3 py-2 bg-slate-200">
+                                {{ $cek->total }}
+                            </td>
+                            <td class="px-3 py-2 bg-slate-200">
+                                {{ $cek->OK }}
+                            </td>
+                            <td class="px-3 py-2 bg-slate-200">
+                                {{ $cek->NG }}
+                            </td>
+                            <td class="px-3 py-2 bg-slate-200">
+                                @if($cek->total == 0)
+                                    0
+                                @else
+                                    {{ number_format((float)($cek->NG/$cek->total) * 100, 2, ',', '') }} %
+                                @endif
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->SLVR }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->BRY }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->GLS }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->FWBK }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->BNG_RNR }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->SNMRK }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->STRATCH }}
+                            </td>
+                            <td class="px-3 py-2">
+                                {{ $cek->remarkNG->SHOT_MOLD }}
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+
+                <tr>
+                    <th scope="col"  colspan=2 class="px-3 py-3 bg-slate-300">TOTAL</th>
+                    <th scope="col" class="px-3 py-3 bg-slate-200">{{ $totalCount }}</th>
+                    <th scope="col" class="px-3 py-3 bg-slate-200">{{ $okCount }}</th>
+                    <th scope="col" class="px-3 py-3 bg-slate-200">{{ $ngCount }}</th>
+                    <th scope="col" class="px-3 py-3 bg-slate-200"></th>
+                    <th scope="col"  colspan=8 class="px-3 py-3 bg-slate-300"></th>
                 </tr>
 
                 </tbody>
@@ -152,8 +170,6 @@
         </div>
 
         <div class="mt-10 bg-slate-300 w-fit">
-
-
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -169,18 +185,18 @@
                     <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="px-3 py-2 text-gray-900 whitespace-nowrap dark:text-white">
-                            (295/330) x 100%
+                            ({{ $okCount }}/{{ $totalCount }}) x 100%
                         </td>
                         <td class="px-3 py-2 text-gray-900 whitespace-nowrap dark:text-white">
-                            (20/330) x 100%
+                            ({{ $ngCount }}/{{ $totalCount }}) x 100%
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th class="text-lg px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            89,4%
+                            {{ number_format((float)($okPercent), 1, ',', '') }} %
                         </th>
                         <td class="text-lg px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            6,1%
+                            {{ number_format((float)($ngPercent), 1, ',', '') }} %
                         </td>
                     </tr>
                     </tbody>

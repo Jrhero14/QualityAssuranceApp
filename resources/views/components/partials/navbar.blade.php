@@ -13,10 +13,13 @@ function getActiveNav($currentUrl, $url){
 @endphp
 
 <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
-        <a href="https://flowbite.com/" class="flex flex-col">
-            <span class="text-lg font-semibold">PT Sankeikid Manutec Indonesia</span>
-            <span class="text-sm font-semibold">Data Quality Control</span>
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-2">
+        <a href="https://flowbite.com/" class="flex gap-3">
+            <img width="10%" src="{{ asset('assets/img/logo.png') }}" alt="" srcset="">
+            <div class="flex flex-col">
+                <span class="text-lg font-semibold">PT Sankeikid Manutec Indonesia</span>
+                <span class="text-sm font-semibold">Data Quality Control</span>
+            </div>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <a href="/logout" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Logout</a>
@@ -27,8 +30,8 @@ function getActiveNav($currentUrl, $url){
                 </svg>
             </button>
         </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 pe-8" id="navbar-sticky">
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <div class="items-center justify-between hidden w-full md:flex md:w-full md:order-1 pe-8" id="navbar-sticky">
+            <ul class="flex flex-col items-center justify-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 @if(auth()->user()->role == 'operator')
                     <li>
                         <a href="/" wire:navigate class="{{ getActiveNav($currentUrl, '/dashboard') }}" aria-current="page">Dashboard</a>
