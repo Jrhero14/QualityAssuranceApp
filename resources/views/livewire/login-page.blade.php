@@ -1,7 +1,8 @@
 <div>
     <section>
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <div class="flex flex-col items-center justify-center px-6 py-4 mx-auto md:h-screen lg:py-0">
+            <img width="7%" src="{{ asset('assets/img/logo.png') }}" alt="" srcset="">
+            <a href="/login" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                 PT Sankeikid Manutec Indonesia
             </a>
             <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
