@@ -49,6 +49,23 @@
   php artisan serve
 ```
 
+## Default Account
+
+| Operator 1 |                 |
+|------------|-----------------|
+| Username   | april@email.com |
+| Password   | operatorapril   |
+
+| Operator 2 |                |
+|------------|----------------|
+| Username   | budi@email.com |
+| Password   | operatorbudi   |
+
+| Supervisor |                      |
+|------------|----------------------|
+| Username   | supervisor@email.com |
+| Password   | super12345           |
+
 ## License
 
 This app is licensed under the [MIT license](https://opensource.org/licenses/MIT).
