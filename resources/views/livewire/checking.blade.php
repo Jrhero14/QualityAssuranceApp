@@ -6,9 +6,13 @@
             <div class="flex justify-between">
                 <div class="flex flex-col gap-y-1">
                     <h1 class="text-xl font-semibold">
-                        QA Checking
+                        @if(auth()->user()->role == 'supervisor')
+                            QA Checking
+                        @else
+                            Quality Control
+                        @endif
                     </h1>
-                    <p>Aplikasi Quality Assurance Product</p>
+                    <p>Aplikasi Quality Control Item</p>
                 </div>
 
                 <form wire:submit="saveShift" class="flex gap-5 items-end">

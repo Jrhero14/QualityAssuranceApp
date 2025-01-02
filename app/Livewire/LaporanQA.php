@@ -70,8 +70,8 @@ class LaporanQA extends Component
                 $ngCount += $data->NG;
             }
 
-            $OKpercent = ($okCount / $totalCount) * 100;
-            $NGpercent = ($ngCount / $totalCount) * 100;
+            $OKpercent = ($totalCount==0) ? 0 : ($okCount / $totalCount) * 100;
+            $NGpercent = ($totalCount==0) ? 0 : ($ngCount / $totalCount) * 100;
 
             $this->totalCount = $totalCount;
             $this->okCount = $okCount;
