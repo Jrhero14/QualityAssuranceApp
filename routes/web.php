@@ -2,6 +2,7 @@
 
 use App\Livewire\Checking;
 use App\Livewire\DashboardPage;
+use App\Livewire\HomePage;
 use App\Livewire\ItemsView;
 use App\Livewire\LaporanQA;
 use App\Livewire\LoginPage;
@@ -9,9 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (){
-    return redirect('/login');
-})->middleware('auth');
+Route::get('/', HomePage::class)->name('home');
 
 Route::get('/login', LoginPage::class)->name('login')->middleware('guest');
 
