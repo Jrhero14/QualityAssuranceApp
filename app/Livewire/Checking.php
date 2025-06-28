@@ -186,19 +186,47 @@ class Checking extends Component
         $this->redirect('/checking', true);
     }
 
+//    private function checkShift()
+//    {
+//        $dateNow = date('Y-m-d');
+//        $dataSchedule = Schedule::query()->whereDate('tanggal', '=', $dateNow)->get()->first();
+//        if (is_null($dataSchedule)){
+//            $dataSchedule = Schedule::query()->create([
+//                'tanggal' => $dateNow,
+//            ]);
+//        }
+//
+//        $this->shiftSelected = $dataSchedule;
+//
+//        return $dataSchedule;
+//    }
+
     private function checkShift()
     {
         $dateNow = date('Y-m-d');
-        $dataSchedule = Schedule::query()->whereDate('tanggal', '=', $dateNow)->get()->first();
-        if (is_null($dataSchedule)){
-            $dataSchedule = Schedule::query()->create([
+
+        // Coba ambil data schedule hari ini
+        $dataSchedule = Schedule::whereDate('tanggal', $dateNow)->first();
+
+        $sudahAda = true;
+
+        if (is_null($dataSchedule)) {
+            // Jika tidak ada, buat baru
+            $dataSchedule = Schedule::create([
                 'tanggal' => $dateNow,
             ]);
+            $sudahAda = false;
+        }else{
+            if (!$dataSchedule->shift1_id && !$dataSchedule->shift2_id){
+                $sudahAda = false;
+            }
         }
 
+        // Simpan ke properti shift terpilih
         $this->shiftSelected = $dataSchedule;
 
-        return $dataSchedule;
+        // Kembalikan apakah sebelumnya sudah ada
+        return $sudahAda;
     }
 
     public function render()
@@ -209,7 +237,7 @@ class Checking extends Component
             $this->addPartNoBefore = 1;
         }
 
-        $this->checkShift();
+        $adaShift = $this->checkShift();
         $items = Item::all();
         $checkings = [];
         if (!is_null($this->itemSelected)){
@@ -218,6 +246,6 @@ class Checking extends Component
                 ->where('schedule_id', '=', $this->shiftSelected->id)
                 ->get();
         }
-        return view('livewire.checking', compact('items', 'checkings'));
+        return view('livewire.checking', compact('items', 'checkings', 'adaShift'));
     }
 }

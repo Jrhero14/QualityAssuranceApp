@@ -46,5 +46,6 @@
         {{ $slot }}
 
         <script src="{{ asset('assets/dist/flowbite.min.js') }}"></script>
+
     </body>
 </html>
