@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="">
-                        <h1 class="font-semibold text-lg">Tanggal: <span class="font-normal">{{ $scheduleData->tanggal }}</span></h1>
+                        <h1 class="font-semibold text-lg">Tanggal: <span class="font-normal">{{ $scheduleData?->tanggal }}</span></h1>
                     </div>
                 </div>
 
